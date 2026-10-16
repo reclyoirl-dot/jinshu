@@ -10,6 +10,7 @@ import {
   Heading2,
   Heading3,
   Image,
+  ImageUp,
   Italic,
   Link,
   List,
@@ -20,10 +21,13 @@ import {
   Table,
   type LucideIcon,
 } from 'lucide-react'
-import { Fragment, useEffect } from 'react'
-import { insertBlock, prefixLines, setEditorView, wrapSelection } from '../editorBridge'
+import { Fragment, useEffect, useRef } from 'react'
+import { activeBlockTracker, publishActiveBlock, useActiveBlock } from '../activeBlock'
+import { getEditorView, insertBlock, prefixLines, setEditorView, wrapSelection } from '../editorBridge'
+import { ensureImageHost, imageDropPaste, uploadImagesToEditor, uploadTracker } from '../imageUpload'
 import { registerScroll } from '../scrollSync'
 import { useCurrentDoc, useStudio } from '../store'
+import BlockParamsPanel from './BlockParamsPanel'
 import { cx, iconBtn } from './ui'
 
 const editorTheme = EditorView.theme({
@@ -38,6 +42,9 @@ const extensions = [
   markdown({ base: markdownLanguage, codeLanguages: languages }),
   EditorView.lineWrapping,
   editorTheme,
+  activeBlockTracker,
+  uploadTracker,
+  imageDropPaste,
   Prec.high(
     keymap.of([
       { key: 'Mod-b', run: (v) => wrapSelection('**', '**', '加粗文字', v) },
@@ -65,7 +72,7 @@ const GROUPS: Tool[][] = [
   ],
   [
     { icon: Link, title: '链接', run: () => wrapSelection('[', '](https://)', '链接文字') },
-    { icon: Image, title: '图片', run: () => wrapSelection('![', '](https://)', '图片描述') },
+    { icon: Image, title: '图片链接', run: () => wrapSelection('![', '](https://)', '图片描述') },
     { icon: Table, title: '表格', run: () => insertBlock('| 标题 | 标题 |\n| --- | --- |\n| 内容 | 内容 |') },
     { icon: Code, title: '代码块', run: () => insertBlock('```js\n\n```') },
     { icon: Minus, title: '分割线', run: () => insertBlock('---') },
@@ -91,14 +98,20 @@ export default function EditorPane() {
   const setContent = useStudio((s) => s.setContent)
   const dark = useStudio((s) => s.dark)
   const words = countWords(doc.content)
+  const fileRef = useRef<HTMLInputElement>(null)
 
   useEffect(
     () => () => {
       setEditorView(null)
       registerScroll('editor', null)
+      useActiveBlock.setState({ block: null })
     },
     [],
   )
+
+  const pickImages = () => {
+    if (ensureImageHost()) fileRef.current?.click()
+  }
 
   return (
     <div className="flex h-full min-w-0 flex-col bg-white dark:bg-[#1b1d23]">
@@ -113,8 +126,29 @@ export default function EditorPane() {
             ))}
           </Fragment>
         ))}
+        <span className="mx-1 h-5 w-px shrink-0 bg-slate-200 dark:bg-white/10" />
+        <button
+          className={cx(iconBtn, 'h-8 w-auto gap-1 px-2 text-xs font-medium')}
+          title="上传图片（也可以直接粘贴截图或拖入图片）"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={pickImages}
+        >
+          <ImageUp size={17} /> <span className="hidden xl:inline">上传图片</span>
+        </button>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          multiple
+          hidden
+          onChange={(e) => {
+            const view = getEditorView()
+            if (view && e.target.files) uploadImagesToEditor(Array.from(e.target.files), view)
+            e.target.value = ''
+          }}
+        />
       </div>
-      <div className="min-h-0 flex-1">
+      <div className="relative min-h-0 flex-1">
         <CodeMirror
           value={doc.content}
           height="100%"
@@ -125,9 +159,11 @@ export default function EditorPane() {
           onCreateEditor={(view) => {
             setEditorView(view)
             registerScroll('editor', view.scrollDOM)
+            publishActiveBlock(view)
           }}
           className="h-full"
         />
+        <BlockParamsPanel />
       </div>
       <div className="flex h-8 shrink-0 items-center gap-4 border-t border-slate-200/80 px-4 text-[11px] text-slate-400 dark:border-white/10">
         <span>{words} 字</span>

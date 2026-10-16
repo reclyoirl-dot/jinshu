@@ -314,6 +314,7 @@ const blocks: BlockDef[] = [
     category: 'body',
     tags: ['电商', '色彩', '简约'],
     example: ':::b-price-offer{price="69" original="89" unit="元 / 本" badge="读者专享" note="优惠至本周日，数量有限"}\n把四季装进口袋\n轻巧随身的周计划手账，附赠四枚季节书签。\n\n从这一页开始，记录属于自己的日常。\n:::',
+    params: [{ key: 'price', label: '价格', type: 'number', placeholder: '69' }, { key: 'original', label: '原价', type: 'number' }, { key: 'unit', label: '单位', type: 'text', placeholder: '元' }, { key: 'badge', label: '角标', type: 'text', placeholder: '本期好物' }, { key: 'note', label: '备注', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => {
       const { first, rest } = splitFirst(raw)
       return html`

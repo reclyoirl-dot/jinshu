@@ -21,6 +21,7 @@ const blocks: BlockDef[] = [
     category: 'ending',
     tags: ['文艺', '古风'],
     example: ':::end-circle{text="完"}\n:::',
+    params: [{ key: 'text', label: '圆圈文字', type: 'text', placeholder: '完' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, ctx }) => html`
       <section style="margin: 2.5em 0 1.5em; text-align: center;">
         <span style="display: inline-block; width: 44px; height: 44px; line-height: 44px; border-radius: 50%; background: ${ctx.color.main};

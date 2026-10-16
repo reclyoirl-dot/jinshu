@@ -114,3 +114,13 @@ html.dark .preview-bg {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* 预览区：可点击的素材（带 data-line）悬停时描边，点击跳到编辑器对应行 */
+.wx-preview-linked [data-line] {
+  cursor: pointer;
+  outline: 1px dashed transparent;
+  outline-offset: 3px;
+}
+.wx-preview-linked [data-line]:hover {
+  outline-color: rgba(7, 193, 96, 0.6);
+}

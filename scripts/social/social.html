@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- 仓库社交预览图（1280×640）。生成：用 Chrome 无头模式截图本页，见 scripts/social/README.md -->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; width: 1280px; height: 640px; overflow: hidden; font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+      .bg {
+        position: relative; width: 1280px; height: 640px; overflow: hidden;
+        background: radial-gradient(circle at 15% 20%, #e8fbf0 0, transparent 45%), radial-gradient(circle at 90% 90%, #eaf3ff 0, transparent 45%), #f7faf8;
+      }
+      .left { position: absolute; left: 80px; top: 92px; width: 620px; }
+      .brand { display: flex; align-items: center; gap: 18px; }
+      .brand img { width: 84px; height: 84px; border-radius: 20px; box-shadow: 0 10px 30px rgba(7, 193, 96, .3); }
+      .name { font-size: 64px; font-weight: 800; color: #0f172a; letter-spacing: 2px; line-height: 1; }
+      .name span { font-size: 30px; color: #07c160; font-weight: 700; letter-spacing: 1px; margin-left: 10px; }
+      .slogan { margin-top: 36px; font-size: 40px; font-weight: 700; color: #0f172a; line-height: 1.35; }
+      .slogan b { color: #07c160; }
+      .desc { margin-top: 18px; font-size: 21px; color: #475569; line-height: 1.7; }
+      .chips { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
+      .chip { padding: 8px 16px; border-radius: 999px; background: #fff; border: 1px solid #d7efe1; color: #0f766e; font-size: 16px; font-weight: 600; box-shadow: 0 2px 6px rgba(15, 23, 42, .04); }
+      .right { position: absolute; right: -40px; top: 40px; width: 600px; height: 600px; transform: rotate(-4deg); }
+      .shot { position: absolute; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 20px 50px rgba(15, 23, 42, .16); }
+      .shot img { display: block; }
+      .s1 { left: 40px; top: 10px; width: 520px; height: 330px; }
+      .s1 img { width: 1600px; margin: -10px 0 0 -10px; transform: scale(.48); transform-origin: 0 0; }
+      .s2 { left: 0; top: 300px; width: 380px; height: 300px; background: #fff url(../../public/showcase/materials.png) no-repeat; background-size: 800px auto; background-position: -400px -160px; }
+      .s3 { left: 330px; top: 360px; width: 300px; height: 240px; background: #fff url(../../public/showcase/materials.png) no-repeat; background-size: 1280px auto; background-position: -950px -16px; }
+      .url { position: absolute; left: 80px; bottom: 40px; font-size: 18px; color: #94a3b8; letter-spacing: .5px; }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="left">
+        <div class="brand">
+          <img src="../../public/favicon.svg" alt="" />
+          <div class="name">锦书<span>JinShu</span></div>
+        </div>
+        <div class="slogan">让 <b>AI</b> 也能排出<br />秀米级公众号</div>
+        <div class="desc">开源的公众号排版编辑器：用 Markdown 写作，<br />一键用上精美素材，复制即可发布。</div>
+        <div class="chips">
+          <span class="chip">205 个素材</span>
+          <span class="chip">GIF 动图</span>
+          <span class="chip">SVG 点击互动</span>
+          <span class="chip">AI 友好</span>
+          <span class="chip">MIT 开源</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="shot s1"><img src="../../public/showcase/editor.png" alt="" /></div>
+        <div class="shot s2"></div>
+        <div class="shot s3"></div>
+      </div>
+      <div class="url">github.com/reclyoirl-dot/jinshu</div>
+    </div>
+  </body>
+</html>

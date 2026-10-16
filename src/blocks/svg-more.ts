@@ -322,6 +322,7 @@ const blocks: BlockDef[] = [
     category: 'svg',
     tags: ['电商', '简约', '动态'],
     example: ':::sv-star-rating{score="4.9"}\n一碗热汤的认真，吃过的人都记得。\n:::',
+    params: [{ key: 'score', label: '评分（0–5）', type: 'number' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => {
       const score = numeric(params.score, 4.9, 0, 5)
       const body = copy(raw || '把每一份喜欢，都放在心上。', 248)

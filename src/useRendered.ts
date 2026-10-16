@@ -35,5 +35,6 @@ export function useRendered(): RenderResult {
   const doc = useCurrentDoc()
   const style = useResolvedStyle()
   const content = useDeferredValue(doc.content)
-  return useMemo(() => renderArticle(content, style), [content, style])
+  // 预览需要 data-line 用于点击素材跳转；复制用的 html 由渲染器保证不含该属性
+  return useMemo(() => renderArticle(content, { ...style, lineMarks: true }), [content, style])
 }

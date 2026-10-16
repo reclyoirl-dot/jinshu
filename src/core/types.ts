@@ -52,6 +52,17 @@ export interface BlockRenderInput {
   ctx: BlockContext
 }
 
+/** 素材参数说明：供编辑器里的参数面板生成表单 */
+export interface BlockParam {
+  key: string
+  label: string
+  type: 'text' | 'color' | 'number' | 'select'
+  /** type 为 select 时的可选项 */
+  options?: { value: string; label: string }[]
+  /** 输入框的占位提示 */
+  placeholder?: string
+}
+
 export interface BlockDef {
   id: string
   name: string
@@ -64,6 +75,8 @@ export interface BlockDef {
   render: (input: BlockRenderInput) => string
   /** 可选：样式中心里提供的快捷变体（例如动图的颜色），点击即插入带该参数的示例 */
   variants?: { param: string; options: { value: string; label: string; swatch: string }[] }
+  /** 可选：参数说明。不写时参数面板会从 example 里推断参数名 */
+  params?: BlockParam[]
 }
 
 export interface TemplateDef {
@@ -83,4 +96,9 @@ export interface RenderOptions {
   footnoteLinks: boolean
   /** 素材文件根地址（以 / 结尾），默认取当前站点；部署后可改为 CDN */
   assetBase?: string
+  /**
+   * 额外输出带 data-line（素材在源码中的行号）的 previewHtml，供预览区点击跳转。
+   * 复制用的 html 始终不含该属性。
+   */
+  lineMarks?: boolean
 }

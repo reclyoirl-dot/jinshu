@@ -1,8 +1,10 @@
 import { ChevronLeft, Monitor, MoreHorizontal, Smartphone } from 'lucide-react'
-import { useCallback } from 'react'
+import { useCallback, type MouseEvent } from 'react'
 import type { LintIssue } from '../core/lint'
+import { jumpToLine } from '../editorBridge'
 import { registerScroll } from '../scrollSync'
 import { useCurrentDoc, useStudio } from '../store'
+import { useUi } from '../store/ui'
 import LintBadge from './LintBadge'
 import { Segmented, cx } from './ui'
 
@@ -38,6 +40,14 @@ export default function PreviewPane({ html, issues }: { html: string; issues: Li
   const mode = useStudio((s) => s.previewMode)
   const setPreviewMode = useStudio((s) => s.setPreviewMode)
   const scrollRef = useCallback((el: HTMLDivElement | null) => registerScroll('preview', el), [])
+  const setMobileTab = useUi((s) => s.setMobileTab)
+
+  // 点击预览里的素材，编辑器跳到对应的 ::: 行（data-line 只存在于预览，复制时会被去掉）
+  const onPreviewClick = (e: MouseEvent<HTMLDivElement>) => {
+    const el = (e.target as Element).closest('[data-line]')
+    if (!el || window.getSelection()?.toString()) return
+    if (jumpToLine(Number(el.getAttribute('data-line'))) && !window.matchMedia('(min-width: 1024px)').matches) setMobileTab('edit')
+  }
 
   const article = (
     <div className="bg-white px-4 pb-12 pt-5">
@@ -46,7 +56,7 @@ export default function PreviewPane({ html, issues }: { html: string; issues: Li
         <span className="text-[#576b95]">{accountName || '我的公众号'}</span>
         <span>{today()}</span>
       </div>
-      <div className="wx-preview" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="wx-preview wx-preview-linked" onClick={onPreviewClick} dangerouslySetInnerHTML={{ __html: html }} />
       <div className="mt-10 flex items-center justify-between border-t border-slate-100 pt-4 text-[13px] text-[#999]">
         <span>阅读 10万+</span>
         <span className="flex gap-5">

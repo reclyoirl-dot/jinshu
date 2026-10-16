@@ -269,6 +269,7 @@ const blocks: BlockDef[] = [
   {
     id: 'qx-choice-quiz', name: '随堂四选一', category: 'qa', tags: ['教育', '校园', '教程'],
     example: ':::qx-choice-quiz{no="01" answer="B" explain="先明确想表达什么，再决定如何呈现，能让每一张图片都服务于内容。"}\n制作一篇图文推送，最适合先做哪一步？\nA: 给所有图片加滤镜\nB: 明确主题与阅读顺序\nC: 选尽可能多的字体\nD: 把每句话都加粗\n:::',
+    params: [{ key: 'no', label: '题号', type: 'text', placeholder: '01' }, { key: 'answer', label: '正确答案', type: 'select', options: [{ value: 'A', label: 'A' }, { value: 'B', label: 'B' }, { value: 'C', label: 'C' }, { value: 'D', label: 'D' }] }, { key: 'explain', label: '解析', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => {
       const stem: string[] = []
       const options: { key: string; text: string }[] = []
@@ -298,6 +299,7 @@ const blocks: BlockDef[] = [
   {
     id: 'qx-true-false', name: '对错判断实验室', category: 'qa', tags: ['教育', '教程', '简约'],
     example: ':::qx-true-false{answer="false"}\nQ: 排版时，强调的文字越多，重点就越清楚。\nA: 强调需要有取舍。只突出关键词，并通过留白与层级建立节奏，读者才更容易找到真正的重点。\n:::',
+    params: [{ key: 'answer', label: '正确答案', type: 'select', options: [{ value: 'true', label: '对' }, { value: 'false', label: '错' }] }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => {
       const { q, a } = splitQA(raw)
       // 未提供或未知值保持待判断状态；支持 true/false、对/错、✓/✗。

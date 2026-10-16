@@ -55,6 +55,7 @@ function expectWechatSafe(html: string) {
   expect(html).not.toMatch(/var\(--/)
   expect(html).not.toMatch(/\{\{/)
   expect(html).not.toMatch(/\sid=/)
+  expect(html).not.toMatch(/\sdata-[\w-]+=/)
 }
 
 describe('工具函数', () => {
@@ -118,6 +119,30 @@ describe('渲染管线', () => {
     expect(html).toContain('嵌套标题')
     expect(html).not.toContain(':::')
     expect(html).not.toContain('theme: simple')
+  })
+
+  it('预览 HTML 带素材行号，复制用的 HTML 不含 data-line', () => {
+    const theme = getTheme('simple')
+    const src = '---\ntheme: simple\n---\n# 标题\n\n:::title-pill\n胶囊\n:::\n\n正文\n\n:::card-border\n:::title-pill\n嵌套\n:::\n:::\n'
+    const out = renderArticle(src, { theme, primary: '#1e80ff', fontSize: 15, footnoteLinks: true, lineMarks: true })
+    expectWechatSafe(out.html)
+    expect(out.html).not.toContain('data-line')
+    // frontmatter 占 3 行，素材分别在第 6、12 行；嵌套的素材不单独标记
+    const lines = [...out.previewHtml!.matchAll(/data-line="(\d+)"/g)].map((m) => Number(m[1]))
+    expect(lines).toEqual([6, 12])
+    expect(out.previewHtml!.replace(/ data-line="\d+"/g, '')).toBe(out.html)
+    // 默认不输出预览专用 HTML
+    expect(renderArticle(src, { theme, primary: '#1e80ff', fontSize: 15, footnoteLinks: true }).previewHtml).toBeUndefined()
+  })
+
+  it('所有素材示例开启行号后，复制用的 HTML 仍不含 data-line', () => {
+    const theme = getTheme('simple')
+    const all = blocks.map((b) => b.example).join('\n\n')
+    const out = renderArticle(all, { theme, primary: '#1e80ff', fontSize: 15, footnoteLinks: true, lineMarks: true })
+    expect(out.html).not.toContain('data-line')
+    expectWechatSafe(out.html)
+    // 每个素材的外层都能拿到行号，预览里都可以点击跳转
+    expect((out.previewHtml!.match(/data-line=/g) ?? []).length).toBe(blocks.length)
   })
 
   it('color 参数覆盖主色', () => {

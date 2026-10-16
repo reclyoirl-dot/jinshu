@@ -1,14 +1,13 @@
 import { LayoutTemplate, Palette, Shapes } from 'lucide-react'
-import { useState } from 'react'
 import MaterialPanel from './MaterialPanel'
 import TemplatePanel from './TemplatePanel'
+import { useUi } from '../store/ui'
 import ThemePanel from './ThemePanel'
 import { Segmented } from './ui'
 
-type Tab = 'materials' | 'themes' | 'templates'
-
 export default function StyleCenter({ onInserted }: { onInserted?: () => void }) {
-  const [tab, setTab] = useState<Tab>('materials')
+  const tab = useUi((s) => s.styleTab)
+  const setTab = useUi((s) => s.setStyleTab)
   return (
     <div className="flex h-full w-full min-w-0 flex-col bg-slate-50 dark:bg-slate-950">
       <div className="shrink-0 border-b border-slate-200/80 bg-white px-3 py-2.5 dark:border-white/10 dark:bg-slate-900">

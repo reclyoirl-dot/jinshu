@@ -18,6 +18,7 @@ const blocks: BlockDef[] = [
     category: 'title',
     tags: ['编号', '文艺', '潮流'],
     example: ':::t-art-number{no="01" en="CITY WALK" sub="用脚步，重新认识一座城"}\n走进街巷的日常\n:::',
+    params: [{ key: 'no', label: '序号', type: 'text', placeholder: '01' }, { key: 'en', label: '英文', type: 'text', placeholder: 'CHAPTER' }, { key: 'sub', label: '副标题', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => frame(html`
       <section style="display: flex; align-items: center;">
         <section style="flex: 0 1 28%; ${wrap} padding-right: 14px; font-size: 40px; line-height: 1.3; font-weight: bold;

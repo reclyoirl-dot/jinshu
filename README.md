@@ -18,7 +18,7 @@
 
 </div>
 
-![锦书编辑器界面](docs/images/editor.png)
+![锦书演示：写 Markdown → 插入素材 → 换主题色 → 点击 SVG 互动 → 复制到公众号](public/showcase/demo.gif)
 
 ## ✨ 为什么是锦书
 
@@ -28,11 +28,12 @@
 - **🎞️ 动图 + 🖱️ SVG 点击互动**：37 款 GIF 动图（大多有 5 种配色），30 款 SVG 动效。「点击揭晓答案」「点击拆礼物」「点击翻面」这类互动，**粘贴到公众号后依然可以点**。
 - **🤖 对 AI 友好**：素材就是一行 `:::素材名{参数}`，配合[素材手册](docs/MATERIALS.md)和 [AI 技能包](skills/)，让 AI 写文章时顺手把排版也做了。
 - **🧩 素材即代码**：每个素材都是一个小文件，提一个 PR 就能贡献，测试会自动检查公众号兼容性。
+- **🖼️ 顺手的编辑体验**：粘贴或拖入图片自动上传到你的图床（GitHub / 七牛 / 阿里云 OSS）；点击预览里的素材，就能在参数面板里改文字和颜色。
 - **🔒 纯前端、可自部署**：文章只存在你的浏览器里，MIT 协议，部署到 GitHub Pages 就能用。
 
 ## 🎨 素材一览
 
-<p align="center"><img src="docs/images/materials.png" alt="素材示例" /></p>
+<p align="center"><img src="public/showcase/materials.png" alt="素材示例" /></p>
 
 > 以上都是真实渲染效果。全部 205 个素材见 👉 [素材总览页](https://reclyoirl-dot.github.io/jinshu/gallery.html)
 
@@ -58,7 +59,7 @@
 
 ### SVG 点击互动
 
-<p align="center"><img src="docs/images/svg.png" alt="SVG 互动素材" /></p>
+<p align="center"><img src="public/showcase/svg.png" alt="SVG 互动素材" /></p>
 
 点一下封面揭晓答案、卡片翻面、查看前后对比、爱心 +1……用的都是公众号支持的 SVG 原生动画，不依赖脚本。
 
@@ -135,7 +136,7 @@ pnpm gifs      # 重新生成动图素材（见贡献指南）
 - [x] GIF 动图生成管线、SVG 点击互动
 - [x] 公众号兼容检测（渐变背景、行高、本地图片等）
 - [x] 素材手册与 AI 技能包（Claude Code / Codex）
-- [ ] 粘贴上传图片（图床）、素材参数可视化编辑
+- [x] 粘贴上传图片（图床）、素材参数可视化编辑
 - [ ] 公众号封面生成、违禁词检测
 - [ ] 浏览器插件：在公众号后台直接插入素材
 

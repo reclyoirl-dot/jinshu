@@ -18,6 +18,7 @@ const blocks: BlockDef[] = [
     category: 'body',
     tags: ['商务', '科技', '通用'],
     example: ':::card-topbar{title="核心观点"}\n品质是企业的立身之本，诚信是长远发展的核心底气。\n:::',
+    params: [{ key: 'title', label: '标题', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 1.2em 0; padding: 14px 18px; background: #fff; border-top: 4px solid ${ctx.color.main}; border-radius: 6px;
         box-shadow: 0 2px 12px rgba(0,0,0,0.08); color: #444;">
@@ -31,6 +32,7 @@ const blocks: BlockDef[] = [
     category: 'body',
     tags: ['文艺', '引用', '通用'],
     example: ':::quote-big{author="佚名"}\n当我们学会为一片落叶驻足，为一缕阳光感动，心灵便能在简单日常中，获得真正的富足与自由。\n:::',
+    params: [{ key: 'author', label: '作者', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 1.5em 0; padding: 6px 18px 14px; background: ${ctx.color.tint(0.94)}; border-radius: 8px;">
         <section style="font-size: 48px; line-height: 1.3; height: 30px; margin-top: -6px; color: ${ctx.color.tint(0.35)}; font-family: Georgia, serif;">“</section>
@@ -44,6 +46,7 @@ const blocks: BlockDef[] = [
     category: 'body',
     tags: ['通用', '科技', '教程'],
     example: ':::note-tip{label="小贴士" icon="💡"}\n随意连接公共免费 WiFi、弱密码长期不更换，都是网络安全的漏洞。\n:::',
+    params: [{ key: 'label', label: '标签', type: 'text', placeholder: '提示' }, { key: 'icon', label: '图标', type: 'text', placeholder: '💡' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 1.2em 0; border: 1px solid ${ctx.color.alpha(0.3)}; border-radius: 6px; overflow: hidden;">
         <section style="background: ${ctx.color.alpha(0.1)}; color: ${ctx.color.main}; font-weight: bold; font-size: 14px; padding: 6px 12px;">
@@ -81,6 +84,7 @@ const blocks: BlockDef[] = [
     category: 'body',
     tags: ['清新', '色彩', '通用'],
     example: ':::card-gradient{title="写在前面"}\n温柔的秋风漫遍人间，我们捡拾散落的秋光，收藏日常的温柔。\n:::',
+    params: [{ key: 'title', label: '标题', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     // 渐变只用在无文字的顶条上，文字区用纯色，避免公众号深色模式警告
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 1.2em 0; border-radius: 12px; overflow: hidden; color: #444; background: ${ctx.color.tint(0.9)};">

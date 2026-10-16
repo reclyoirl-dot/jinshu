@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import welcome from '../content/welcome.md?raw'
+import { DEFAULT_IMAGE_HOST, mergeImageHost, type ImageHostConfig, type ImageHostProvider } from '../core/imageHost'
 import { stripFrontmatter } from '../core/render'
 import type { TemplateDef } from '../core/types'
 import { DEFAULT_THEME_ID } from '../themes'
@@ -31,6 +32,8 @@ interface StudioState {
   /** 预览中显示的公众号名称 */
   accountName: string
   previewMode: 'phone' | 'wide'
+  /** 图床配置（含密钥），只保存在本机浏览器的 localStorage */
+  imageHost: ImageHostConfig
 
   setContent: (content: string) => void
   newDoc: (content?: string) => void
@@ -47,6 +50,8 @@ interface StudioState {
   setAssetBase: (url: string | null) => void
   setAccountName: (name: string) => void
   setPreviewMode: (mode: 'phone' | 'wide') => void
+  setImageHostProvider: (provider: ImageHostProvider) => void
+  updateImageHost: <K extends Exclude<ImageHostProvider, 'none'>>(provider: K, patch: Partial<ImageHostConfig[K]>) => void
 }
 
 const uid = () => Math.random().toString(36).slice(2, 10)
@@ -78,6 +83,7 @@ export const useStudio = create<StudioState>()(
       assetBase: null,
       accountName: '我的公众号',
       previewMode: 'phone',
+      imageHost: DEFAULT_IMAGE_HOST,
 
       setContent: (content) =>
         set((s) => ({
@@ -110,12 +116,20 @@ export const useStudio = create<StudioState>()(
       setAssetBase: (assetBase) => set({ assetBase: assetBase?.trim() || null }),
       setAccountName: (accountName) => set({ accountName }),
       setPreviewMode: (previewMode) => set({ previewMode }),
+      setImageHostProvider: (provider) => set((s) => ({ imageHost: { ...s.imageHost, provider } })),
+      updateImageHost: (provider, patch) =>
+        set((s) => ({ imageHost: { ...s.imageHost, [provider]: { ...s.imageHost[provider], ...patch } } })),
     }),
     {
       name: 'jinshu',
       version: 2,
       // v1 → v2 只新增字段，直接合并默认值即可
       migrate: (state) => state as StudioState,
+      // 图床配置是嵌套对象，逐层合并默认值
+      merge: (persisted, current) => {
+        const saved = (persisted ?? {}) as Partial<StudioState>
+        return { ...current, ...saved, imageHost: mergeImageHost(saved.imageHost) }
+      },
     },
   ),
 )

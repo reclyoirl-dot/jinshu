@@ -1,5 +1,5 @@
 import { CircleAlert, CircleCheck, Eye, Palette, PenLine, TriangleAlert } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import EditorPane from './components/EditorPane'
 import Header from './components/Header'
 import PreviewPane from './components/PreviewPane'
@@ -7,10 +7,9 @@ import StyleCenter from './components/StyleCenter'
 import { cx } from './components/ui'
 import { lintHtml } from './core/lint'
 import { useStudio } from './store'
+import { useUi, type MobileTab } from './store/ui'
 import { useToast } from './toast'
 import { useRendered } from './useRendered'
-
-type MobileTab = 'style' | 'edit' | 'preview'
 
 const MOBILE_TABS: { id: MobileTab; name: string; icon: typeof Eye }[] = [
   { id: 'style', name: '样式', icon: Palette },
@@ -47,7 +46,8 @@ export default function App() {
   const dark = useStudio((s) => s.dark)
   const rendered = useRendered()
   const issues = useMemo(() => lintHtml(rendered.html), [rendered.html])
-  const [mobileTab, setMobileTab] = useState<MobileTab>('edit')
+  const mobileTab = useUi((s) => s.mobileTab)
+  const setMobileTab = useUi((s) => s.setMobileTab)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
@@ -69,7 +69,7 @@ export default function App() {
         </section>
         <section className={cx(panel('preview'), 'border-l border-slate-200/80 dark:border-white/10')}>
           <div className="h-full w-full">
-            <PreviewPane html={rendered.html} issues={issues} />
+            <PreviewPane html={rendered.previewHtml ?? rendered.html} issues={issues} />
           </div>
         </section>
       </main>

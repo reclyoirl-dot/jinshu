@@ -1,6 +1,7 @@
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js/lib/common'
 import { getBlock } from '../../blocks'
+import { CLOSE_RE, OPEN_RE } from '../blockSyntax'
 import { colorKit, isValidHex } from '../color'
 import type { BlockContext } from '../types'
 import { escapeHtml, parseAttrs } from './attrs'
@@ -9,6 +10,10 @@ export interface RenderEnv {
   primary: string
   fontSize: number
   assetBase: string
+  /** 给素材外层元素加 data-line（源码行号，从 1 开始），预览区据此跳转到编辑器 */
+  markLines?: boolean
+  /** 被 frontmatter 去掉的行数，用来把行号换算回原始文档 */
+  lineOffset?: number
 }
 
 export const md: MarkdownIt = new MarkdownIt({
@@ -82,8 +87,6 @@ md.renderer.rules.image = (tokens, idx, options, env, self) => {
 
 type BlockRule = Parameters<MarkdownIt['block']['ruler']['before']>[2]
 
-const OPEN_RE = /^:::\s*([\w-]+)\s*(\{.*\})?\s*$/
-
 const blockRule: BlockRule = (state, startLine, endLine, silent) => {
   const lineText = (n: number) => state.src.slice(state.bMarks[n] + state.tShift[n], state.eMarks[n])
   const m = lineText(startLine).match(OPEN_RE)
@@ -96,7 +99,7 @@ const blockRule: BlockRule = (state, startLine, endLine, silent) => {
   while (++next < endLine) {
     const l = lineText(next).trim()
     if (OPEN_RE.test(l)) depth++
-    else if (/^:::\s*$/.test(l) && --depth === 0) break
+    else if (CLOSE_RE.test(l) && --depth === 0) break
   }
   const closed = next < endLine
   const raw = state.getLines(startLine + 1, next, state.blkIndent, false)
@@ -114,24 +117,34 @@ md.block.ruler.before('fence', 'wx_block', blockRule, {
   alt: ['paragraph', 'reference', 'blockquote', 'list'],
 })
 
+/** 在素材 HTML 的第一个标签上加 data-line（复制前由 cleanup 去掉） */
+function markLine(html: string, map: [number, number] | null, env: RenderEnv): string {
+  if (!env.markLines || !map) return html
+  const line = map[0] + 1 + (env.lineOffset ?? 0)
+  return html.replace(/^(\s*<[a-zA-Z][\w-]*)/, `$1 data-line="${line}"`)
+}
+
 md.renderer.rules.wx_block = (tokens, idx, _options, env: RenderEnv) => {
   const token = tokens[idx]
   const def = getBlock(token.info)
   if (!def) {
-    return `<section class="wx-block-unknown">未知组件：${escapeHtml(token.info)}</section>\n`
+    return markLine(`<section class="wx-block-unknown">未知组件：${escapeHtml(token.info)}</section>`, token.map, env) + '\n'
   }
   const params = token.meta.params as Record<string, string>
   const color = params.color && isValidHex(params.color) ? params.color : env.primary
+  // 容器内部是重新解析的，行号对不上：嵌套素材不再标记，点击时跳到外层素材
+  const inner: RenderEnv = { ...env, markLines: false }
   const ctx: BlockContext = {
     color: colorKit(color.startsWith('#') ? color : `#${color}`),
     fontSize: env.fontSize,
-    renderInline: (s) => md.renderInline(s, env),
-    render: (s) => md.render(s, env),
+    renderInline: (s) => md.renderInline(s, inner),
+    render: (s) => md.render(s, inner),
     asset: (p) => env.assetBase + p.replace(/^\/+/, ''),
   }
   try {
-    return def.render({ params, raw: token.meta.raw as string, ctx }) + '\n'
+    return markLine(def.render({ params, raw: token.meta.raw as string, ctx }), token.map, env) + '\n'
   } catch (e) {
-    return `<section class="wx-block-unknown">组件 ${escapeHtml(token.info)} 渲染失败：${escapeHtml(String(e))}</section>\n`
+    const msg = `<section class="wx-block-unknown">组件 ${escapeHtml(token.info)} 渲染失败：${escapeHtml(String(e))}</section>`
+    return markLine(msg, token.map, env) + '\n'
   }
 }

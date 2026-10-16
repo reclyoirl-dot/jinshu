@@ -8,6 +8,7 @@ const blocks: BlockDef[] = [
     category: 'guide',
     tags: ['通用', '引导'],
     example: ':::follow-top{name="蓝字"}\n:::',
+    params: [{ key: 'name', label: '强调文字', type: 'text', placeholder: '蓝字' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, ctx }) => html`
       <section style="margin: 0.5em 0 1.5em; text-align: center; font-size: 13px; color: #888; letter-spacing: 1px;">
         <span style="display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent;

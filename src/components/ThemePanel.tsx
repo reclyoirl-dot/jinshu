@@ -6,6 +6,7 @@ import { renderArticle } from '../core/render'
 import { useStudio } from '../store'
 import { themes } from '../themes'
 import { useResolvedStyle } from '../useRendered'
+import ImageHostSettings from './ImageHostSettings'
 import { SectionTitle, Segmented, Switch, Thumb, cx } from './ui'
 
 const THEME_SAMPLE = '## 标题样式\n\n正文内容，**重点强调**与`行内代码`。\n\n> 引用文字的样子'
@@ -118,6 +119,8 @@ export default function ThemePanel() {
           </p>
         </div>
       </section>
+
+      <ImageHostSettings />
 
       <section>
         <SectionTitle>全局主题 · {themes.length}</SectionTitle>

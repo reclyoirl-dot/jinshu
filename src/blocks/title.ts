@@ -10,6 +10,7 @@ const blocks: BlockDef[] = [
     category: 'title',
     tags: ['简约', '通用', '编号'],
     example: ':::title-numbered{no="01" sub="SIMPLE TITLE"}\n简单通用标题\n:::',
+    params: [{ key: 'no', label: '序号', type: 'text', placeholder: '01' }, { key: 'sub', label: '英文副标题', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 2em 0 1.2em; text-align: center;">
         <section style="font-size: 36px; font-weight: bold; line-height: 1.3; color: ${ctx.color.tint(0.5)};
@@ -26,6 +27,7 @@ const blocks: BlockDef[] = [
     category: 'title',
     tags: ['简约', '商务', '通用'],
     example: ':::title-leftbar{sub="SUBTITLE"}\n左侧竖条标题\n:::',
+    params: [{ key: 'sub', label: '副标题', type: 'text' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 1.8em 0 1em; padding-left: 12px; border-left: 5px solid ${ctx.color.main};">
         <section style="font-size: ${ctx.fontSize * 1.2}px; font-weight: bold; color: ${TITLE_COLOR}; line-height: 1.5;">
@@ -64,6 +66,7 @@ const blocks: BlockDef[] = [
     category: 'title',
     tags: ['简约', '商务', '科技', '编号'],
     example: ':::title-part{no="01"}\n简约而不简单\n:::',
+    params: [{ key: 'no', label: '序号', type: 'text', placeholder: '01' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="margin: 2em 0 1.2em; text-align: center;">
         <section style="display: inline-block; font-size: 12px; color: #fff; background: ${ctx.color.main}; padding: 2px 10px; letter-spacing: 2px;">
@@ -79,6 +82,7 @@ const blocks: BlockDef[] = [
     category: 'title',
     tags: ['商务', '科技', '编号'],
     example: ':::title-badge{no="1"}\n攻坚核心技术，突破发展壁垒\n:::',
+    params: [{ key: 'no', label: '序号', type: 'text', placeholder: '1' }, { key: 'color', label: '主色', type: 'color' }],
     render: ({ params, raw, ctx }) => html`
       <section style="display: flex; align-items: center; margin: 1.8em 0 1em; padding-bottom: 8px; border-bottom: 1px solid ${ctx.color.tint(0.7)};">
         <section style="flex-shrink: 0; width: 34px; height: 34px; line-height: 34px; text-align: center; background: ${ctx.color.main};

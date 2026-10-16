@@ -84,11 +84,13 @@ function fixCodeWhitespace(root: Element, doc: Document) {
   }
 }
 
-function cleanup(root: Element) {
+/** 去掉公众号不认的 class / id，以及只给预览区用的 data-line */
+function cleanup(root: Element, keepLineMarks = false) {
   const all = [root, ...Array.from(root.querySelectorAll('*'))]
   for (const el of all) {
     el.removeAttribute('class')
     el.removeAttribute('id')
+    if (!keepLineMarks) el.removeAttribute('data-line')
   }
   // 主题没有装饰的标题前后缀是空 span，删掉
   for (const span of Array.from(root.querySelectorAll('span'))) {
@@ -97,8 +99,11 @@ function cleanup(root: Element) {
 }
 
 export interface RenderResult {
+  /** 复制到公众号用的 HTML，不含 class / id / data-* */
   html: string
   text: string
+  /** 仅当 lineMarks 为真时提供：素材外层带 data-line，只用于预览区点击跳转 */
+  previewHtml?: string
 }
 
 /** Markdown → 公众号可直接粘贴的内联样式 HTML */
@@ -108,7 +113,12 @@ export function renderArticle(markdown: string, opts: RenderOptions): RenderResu
     fontSize: opts.fontSize,
     assetBase: withSlash(opts.assetBase || defaultAssetBase()),
   }
-  const body = md.render(stripFrontmatter(markdown), env)
+  const source = stripFrontmatter(markdown)
+  if (opts.lineMarks) {
+    env.markLines = true
+    env.lineOffset = markdown.slice(0, markdown.length - source.length).split('\n').length - 1
+  }
+  const body = md.render(source, env)
 
   const doc = document.implementation.createHTMLDocument('')
   doc.body.innerHTML = `<section class="wx-root">${body}</section>`
@@ -118,7 +128,12 @@ export function renderArticle(markdown: string, opts: RenderOptions): RenderResu
   const css = fillPlaceholders(BASE_CSS + CODE_CSS[opts.theme.codeTheme] + opts.theme.css, env)
   inlineCss(root, css)
   fixCodeWhitespace(root, doc)
+  if (!opts.lineMarks) {
+    cleanup(root)
+    return { html: root.outerHTML, text: root.textContent ?? '' }
+  }
+  cleanup(root, true)
+  const previewHtml = root.outerHTML
   cleanup(root)
-
-  return { html: root.outerHTML, text: root.textContent ?? '' }
+  return { html: root.outerHTML, text: root.textContent ?? '', previewHtml }
 }

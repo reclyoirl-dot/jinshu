@@ -1,4 +1,4 @@
-import type { EditorView } from '@codemirror/view'
+import { EditorView } from '@codemirror/view'
 
 /** 让样式中心、工具栏等组件可以操作编辑器 */
 let view: EditorView | null = null
@@ -55,5 +55,40 @@ export function insertBlock(text: string, v = view) {
     scrollIntoView: true,
   })
   v.focus()
+  return true
+}
+
+/** 把光标移到某一行（从 1 开始）行首并滚动到视野中间 */
+export function jumpToLine(line: number, v = view) {
+  if (!v) return false
+  const n = Math.min(Math.max(1, line), v.state.doc.lines)
+  const pos = v.state.doc.line(n).from
+  v.dispatch({ selection: { anchor: pos }, effects: EditorView.scrollIntoView(pos, { y: 'center' }) })
+  v.focus()
+  return true
+}
+
+/** 整行替换（行号从 1 开始，包含首尾行） */
+export function replaceLines(fromLine: number, toLine: number, text: string, v = view) {
+  if (!v) return false
+  const { doc } = v.state
+  if (fromLine < 1 || toLine > doc.lines || fromLine > toLine) return false
+  const from = doc.line(fromLine).from
+  const to = doc.line(toLine).to
+  if (doc.sliceString(from, to) === text) return true
+  v.dispatch({ changes: { from, to, insert: text } })
+  return true
+}
+
+/** 替换两行之间的内容（不含这两行本身），用于改写素材正文 */
+export function replaceBetweenLines(openLine: number, closeLine: number, text: string, v = view) {
+  if (!v) return false
+  const { doc } = v.state
+  if (openLine < 1 || closeLine > doc.lines || openLine >= closeLine) return false
+  const from = doc.line(openLine).to
+  const to = doc.line(closeLine).from
+  const insert = text ? `\n${text}\n` : '\n'
+  if (doc.sliceString(from, to) === insert) return true
+  v.dispatch({ changes: { from, to, insert } })
   return true
 }
