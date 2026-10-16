@@ -1,0 +1,669 @@
+[
+  {
+    "id": "sakura-breeze",
+    "name": "春日樱花飘落",
+    "category": "title",
+    "tags": [
+      "春天",
+      "樱花",
+      "清新"
+    ],
+    "width": 640,
+    "height": 200,
+    "display": "100%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "sunny-rays",
+    "name": "夏日旋转小太阳",
+    "category": "imagetext",
+    "tags": [
+      "夏天",
+      "阳光",
+      "可爱"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "autumn-postcard",
+    "name": "秋日落叶来信",
+    "category": "title",
+    "tags": [
+      "秋天",
+      "落叶",
+      "文艺"
+    ],
+    "width": 640,
+    "height": 200,
+    "display": "100%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "rainy-umbrella",
+    "name": "雨天的小伞",
+    "category": "imagetext",
+    "tags": [
+      "下雨",
+      "天气",
+      "治愈"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "birthday-balloons",
+    "name": "彩色气球上升",
+    "category": "title",
+    "tags": [
+      "生日",
+      "儿童节",
+      "庆祝"
+    ],
+    "width": 640,
+    "height": 200,
+    "display": "100%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "candle-wishes",
+    "name": "生日蛋糕与烛光",
+    "category": "imagetext",
+    "tags": [
+      "生日",
+      "蛋糕",
+      "祝福"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "coffee-pause",
+    "name": "热咖啡休息时间",
+    "category": "imagetext",
+    "tags": [
+      "咖啡",
+      "生活",
+      "治愈"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "countdown-three",
+    "name": "倒计时 3 2 1",
+    "category": "title",
+    "tags": [
+      "倒计时",
+      "活动",
+      "开场"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": [
+      "purple",
+      "blue",
+      "green",
+      "red",
+      "orange"
+    ],
+    "defaultColor": "purple"
+  },
+  {
+    "id": "notice-speaker",
+    "name": "喇叭最新公告",
+    "category": "title",
+    "tags": [
+      "公告",
+      "企业",
+      "通知"
+    ],
+    "width": 640,
+    "height": 160,
+    "display": "100%",
+    "variants": [
+      "orange",
+      "blue",
+      "green",
+      "red",
+      "purple"
+    ],
+    "defaultColor": "orange"
+  },
+  {
+    "id": "task-complete",
+    "name": "对勾描绘已完成",
+    "category": "ending",
+    "tags": [
+      "完成",
+      "对勾",
+      "简约"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": [
+      "green",
+      "blue",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "green"
+  },
+  {
+    "id": "loading-hundred",
+    "name": "进度加载到百分百",
+    "category": "guide",
+    "tags": [
+      "加载",
+      "进度",
+      "科技"
+    ],
+    "width": 640,
+    "height": 160,
+    "display": "100%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "swipe-gallery",
+    "name": "左右滑动查看更多",
+    "category": "guide",
+    "tags": [
+      "引导",
+      "滑动",
+      "相册"
+    ],
+    "width": 640,
+    "height": 160,
+    "display": "100%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "lucky-envelope",
+    "name": "红包摇晃来啦",
+    "category": "imagetext",
+    "tags": [
+      "红包",
+      "春节",
+      "活动"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "christmas-lights",
+    "name": "圣诞树彩灯闪烁",
+    "category": "imagetext",
+    "tags": [
+      "圣诞",
+      "节日",
+      "祝福"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "health-pulse",
+    "name": "健康心电图",
+    "category": "divider",
+    "tags": [
+      "健康",
+      "医疗",
+      "心电图"
+    ],
+    "width": 640,
+    "height": 110,
+    "display": "100%",
+    "variants": [
+      "green",
+      "blue",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "green"
+  },
+  {
+    "id": "book-turning",
+    "name": "书本轻轻翻页",
+    "category": "imagetext",
+    "tags": [
+      "教育",
+      "阅读",
+      "书本"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "follow",
+    "name": "点击蓝字关注",
+    "category": "guide",
+    "tags": [
+      "引导",
+      "通用"
+    ],
+    "width": 640,
+    "height": 120,
+    "display": "100%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "actions",
+    "name": "分享收藏点赞在看",
+    "category": "guide",
+    "tags": [
+      "引导",
+      "结尾",
+      "通用"
+    ],
+    "width": 640,
+    "height": 150,
+    "display": "100%",
+    "variants": [
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "red"
+  },
+  {
+    "id": "scroll",
+    "name": "向下滑动",
+    "category": "guide",
+    "tags": [
+      "引导",
+      "简约"
+    ],
+    "width": 300,
+    "height": 150,
+    "display": "40%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "readmore",
+    "name": "阅读原文按钮",
+    "category": "guide",
+    "tags": [
+      "引导",
+      "通用"
+    ],
+    "width": 480,
+    "height": 140,
+    "display": "70%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "star",
+    "name": "设为星标",
+    "category": "guide",
+    "tags": [
+      "引导",
+      "通用"
+    ],
+    "width": 640,
+    "height": 130,
+    "display": "100%",
+    "variants": [
+      "orange",
+      "blue",
+      "green",
+      "red",
+      "purple"
+    ],
+    "defaultColor": "orange"
+  },
+  {
+    "id": "wave",
+    "name": "流动波浪线",
+    "category": "divider",
+    "tags": [
+      "简约",
+      "清新"
+    ],
+    "width": 640,
+    "height": 60,
+    "display": "100%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "dots",
+    "name": "跃动圆点",
+    "category": "divider",
+    "tags": [
+      "简约",
+      "可爱"
+    ],
+    "width": 640,
+    "height": 50,
+    "display": "100%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "plane",
+    "name": "纸飞机分割线",
+    "category": "divider",
+    "tags": [
+      "清新",
+      "可爱"
+    ],
+    "width": 640,
+    "height": 90,
+    "display": "100%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "sparkle",
+    "name": "星光细线",
+    "category": "divider",
+    "tags": [
+      "简约",
+      "文艺"
+    ],
+    "width": 640,
+    "height": 70,
+    "display": "100%",
+    "variants": [
+      "purple",
+      "blue",
+      "green",
+      "red",
+      "orange"
+    ],
+    "defaultColor": "purple"
+  },
+  {
+    "id": "new",
+    "name": "NEW 爆炸贴",
+    "category": "title",
+    "tags": [
+      "潮流",
+      "电商"
+    ],
+    "width": 200,
+    "height": 200,
+    "display": "28%",
+    "variants": [
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "red"
+  },
+  {
+    "id": "hot",
+    "name": "HOT 火焰",
+    "category": "title",
+    "tags": [
+      "潮流",
+      "电商"
+    ],
+    "width": 200,
+    "height": 200,
+    "display": "28%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "end",
+    "name": "END 动态结尾",
+    "category": "ending",
+    "tags": [
+      "简约",
+      "通用"
+    ],
+    "width": 480,
+    "height": 150,
+    "display": "60%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "thanks",
+    "name": "感谢阅读 · 爱心",
+    "category": "ending",
+    "tags": [
+      "可爱",
+      "通用"
+    ],
+    "width": 480,
+    "height": 180,
+    "display": "70%",
+    "variants": [
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "red"
+  },
+  {
+    "id": "typing",
+    "name": "打字机开场",
+    "category": "title",
+    "tags": [
+      "简约",
+      "科技"
+    ],
+    "width": 560,
+    "height": 100,
+    "display": "80%",
+    "variants": [
+      "blue",
+      "green",
+      "red",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "blue"
+  },
+  {
+    "id": "hearts",
+    "name": "心动贴纸",
+    "category": "imagetext",
+    "tags": [
+      "可爱",
+      "少女"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": [
+      "red",
+      "blue",
+      "green",
+      "orange",
+      "purple"
+    ],
+    "defaultColor": "red"
+  },
+  {
+    "id": "confetti",
+    "name": "彩纸庆祝",
+    "category": "title",
+    "tags": [
+      "节日",
+      "色彩",
+      "企业"
+    ],
+    "width": 480,
+    "height": 200,
+    "display": "80%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "lantern",
+    "name": "新春灯笼",
+    "category": "title",
+    "tags": [
+      "节日",
+      "春节",
+      "古风"
+    ],
+    "width": 480,
+    "height": 230,
+    "display": "80%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "snow",
+    "name": "初雪横幅",
+    "category": "title",
+    "tags": [
+      "节日",
+      "清新",
+      "圣诞"
+    ],
+    "width": 640,
+    "height": 200,
+    "display": "100%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "fireworks",
+    "name": "新年烟花",
+    "category": "title",
+    "tags": [
+      "节日",
+      "春节",
+      "元旦"
+    ],
+    "width": 480,
+    "height": 240,
+    "display": "80%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "moon",
+    "name": "中秋明月",
+    "category": "title",
+    "tags": [
+      "节日",
+      "中秋",
+      "古风"
+    ],
+    "width": 480,
+    "height": 220,
+    "display": "80%",
+    "variants": null,
+    "defaultColor": null
+  },
+  {
+    "id": "gift",
+    "name": "礼物惊喜",
+    "category": "imagetext",
+    "tags": [
+      "节日",
+      "电商",
+      "可爱"
+    ],
+    "width": 240,
+    "height": 240,
+    "display": "36%",
+    "variants": null,
+    "defaultColor": null
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "name": "jinshu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "锦书 JinShu：开源公众号排版编辑器——Markdown 写作 + 200+ 素材 + GIF 动图 + SVG 点击互动，AI 也能直接写出带排版的文章",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "gifs": "node scripts/gifs/gen.mjs",
+    "gifs:preview": "node scripts/gifs/preview.mjs",
+    "catalog": "node scripts/gen-catalog.mjs"
+  },
+  "dependencies": {
+    "@codemirror/lang-markdown": "^6.3.1",
+    "@codemirror/language-data": "^6.5.1",
+    "@codemirror/state": "^6.4.1",
+    "@codemirror/view": "^6.34.1",
+    "@uiw/react-codemirror": "^4.23.6",
+    "highlight.js": "^11.10.0",
+    "lucide-react": "^0.454.0",
+    "markdown-it": "^14.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "gifenc": "^1.0.3",
+    "jsdom": "^25.0.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  },
+  "packageManager": "pnpm@11.3.0",
+  "keywords": [
+    "wechat",
+    "公众号",
+    "markdown",
+    "editor",
+    "排版",
+    "svg",
+    "gif",
+    "ai"
+  ]
+}

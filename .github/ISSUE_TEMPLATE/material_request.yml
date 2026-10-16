@@ -1,0 +1,39 @@
+name: 🎨 素材征集
+description: 想要什么样的标题、卡片、节日素材、动图或 SVG 互动？告诉我们
+labels: [素材征集]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 素材类型
+      options:
+        - 标题
+        - 正文卡片
+        - 问答
+        - 图文
+        - 分割线
+        - 引导关注
+        - 结尾
+        - 节日
+        - GIF 动图
+        - SVG 互动
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: 想要的效果
+      description: 文字描述或参考图都可以（请勿直接搬运其他平台的素材代码）
+    validations:
+      required: true
+  - type: textarea
+    id: scene
+    attributes:
+      label: 使用场景
+      placeholder: 例如：教育类公众号的课程预告、电商上新……
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: 参与
+      options:
+        - label: 我愿意自己动手做这个素材（参考 docs/CONTRIBUTING.md）

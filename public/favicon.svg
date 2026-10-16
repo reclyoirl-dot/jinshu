@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2bd47d"/>
+      <stop offset="1" stop-color="#05994b"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <!-- 一页折角信笺：锦书 -->
+  <path d="M17 14h22l9 9v27a3 3 0 0 1-3 3H17a3 3 0 0 1-3-3V17a3 3 0 0 1 3-3z" fill="#fff"/>
+  <path d="M39 14v6a3 3 0 0 0 3 3h6z" fill="#bff0d4"/>
+  <rect x="20" y="29" width="18" height="3.2" rx="1.6" fill="#07c160"/>
+  <rect x="20" y="36" width="22" height="3.2" rx="1.6" fill="#9be3bd"/>
+  <rect x="20" y="43" width="14" height="3.2" rx="1.6" fill="#9be3bd"/>
+  <!-- AI 星光 -->
+  <path d="M47 35 Q47 41 53 41 Q47 41 47 47 Q47 41 41 41 Q47 41 47 35z" fill="#ffd54f" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,12 @@
+node_modules
+dist
+*.tsbuildinfo
+.DS_Store
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea
+coverage
+
+# 发布物料（仅本地）
+launch-kit/
